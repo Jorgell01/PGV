@@ -1,0 +1,89 @@
+La principal diferencia entre Runnable y Thread en Java radica en cómo se utiliza cada uno para crear y ejecutar hilos (threads) en un programa. Aquí se explican estas diferencias en detalle:
+
+1. Interfaz Runnable
+Runnable es una interfaz funcional que contiene un solo método, run(). Esta interfaz representa una tarea que se puede ejecutar en un hilo.
+Para usar Runnable, necesitas crear una clase que implemente esta interfaz y proporcionar una implementación del método run(). Posteriormente, esa instancia de Runnable se puede pasar a un objeto Thread para ejecutarse en un nuevo hilo.
+Ventajas de usar Runnable:
+Separación de tareas y hilos: Permite separar la lógica de la tarea a ejecutar del hilo que la ejecuta. Puedes reutilizar la misma clase Runnable en múltiples hilos.
+Mayor flexibilidad: Puedes extender otras clases, ya que Java permite heredar de una sola clase, pero una clase puede implementar múltiples interfaces. Por lo tanto, usar Runnable te permite mantener la opción de heredar otra clase.
+Compatibilidad con Executor Framework: Runnable se utiliza ampliamente con el Executor Framework (ExecutorService) para gestionar la ejecución de tareas en hilos sin crear instancias directas de Thread.
+Ejemplo con Runnable:
+
+class Tarea implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("La tarea se está ejecutando en el hilo: " + Thread.currentThread().getName());
+    }
+}
+
+public class EjemploRunnable {
+    public static void main(String[] args) {
+        Tarea tarea = new Tarea();  // Crear instancia de la clase que implementa Runnable
+        Thread hilo = new Thread(tarea);  // Pasar la tarea a un nuevo hilo
+        hilo.start();  // Iniciar el hilo
+    }
+}
+ 
+
+En este ejemplo, la clase Tarea implementa Runnable y define su lógica en el método run(). Luego, se crea un nuevo Thread pasando la instancia tarea como argumento y se inicia con hilo.start().
+
+2. Clase Thread
+Thread es una clase que ya implementa la interfaz Runnable y proporciona métodos adicionales para gestionar el ciclo de vida de un hilo (por ejemplo, start(), sleep(), join(), etc.).
+Puedes crear un hilo de dos maneras: extendiendo directamente la clase Thread o pasando una instancia de Runnable a un objeto Thread.
+Si decides extender Thread, debes sobrescribir el método run() y luego crear una instancia de la clase derivada para ejecutar la lógica del hilo.
+Desventajas de usar Thread:
+Restricción de herencia: Como Java no admite herencia múltiple, si extiendes Thread, no podrás extender otra clase, lo cual puede limitar la flexibilidad de tu diseño.
+Menor separación de tareas y ejecución: Extender Thread mezcla la lógica de la tarea con la implementación del hilo, lo cual no es ideal si deseas reutilizar la lógica de la tarea en diferentes hilos.
+Ejemplo con Thread:
+class MiHilo extends Thread {
+    @Override
+    public void run() {
+        System.out.println("La tarea se está ejecutando en el hilo: " + Thread.currentThread().getName());
+    }
+}
+
+public class EjemploThread {
+    public static void main(String[] args) {
+        MiHilo hilo = new MiHilo();  // Crear instancia de la clase que extiende Thread
+        hilo.start();  // Iniciar el hilo
+    }
+}
+En este ejemplo, la clase MiHilo extiende Thread y define su lógica en el método run(). Luego, se crea una instancia de MiHilo y se inicia el hilo con hilo.start().
+
+3. Comparación y Cuándo Usar Cada Uno
+Aspecto	Runnable	Thread
+Extensión	No requiere heredar de Thread. Permite heredar otra clase.	Requiere heredar de Thread. No permite heredar otra clase.
+Reutilización	Fácil de reutilizar en diferentes contextos y en combinación con ExecutorService.	Difícil de reutilizar fuera del contexto de Thread.
+Separación de lógica y ejecución	Permite separar la lógica de la tarea del hilo que la ejecuta.	Mezcla la lógica de la tarea con la implementación del hilo.
+Uso con ExecutorService	Compatible. Runnable se puede usar directamente con ExecutorService.	Incompatible directamente con ExecutorService.
+4. Recomendación General
+Usa Runnable cuando necesites separar la lógica de la tarea y la ejecución, y cuando desees heredar de otra clase.
+Usa Thread cuando solo necesites una implementación rápida y sencilla de un hilo, y no tengas la necesidad de heredar otra clase.
+5. Ejemplo Comparativo
+// Usando Runnable
+class TareaRunnable implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("Ejecutando tarea con Runnable en: " + Thread.currentThread().getName());
+    }
+}
+
+// Usando Thread
+class TareaThread extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Ejecutando tarea con Thread en: " + Thread.currentThread().getName());
+    }
+}
+
+public class ComparacionRunnableThread {
+    public static void main(String[] args) {
+        // Usar Runnable con un Thread
+        Thread hiloRunnable = new Thread(new TareaRunnable());
+        hiloRunnable.start();
+
+        // Usar una clase que extiende Thread directamente
+        TareaThread hiloThread = new TareaThread();
+        hiloThread.start();
+    }
+}

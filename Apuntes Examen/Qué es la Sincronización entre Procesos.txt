@@ -1,0 +1,32 @@
+¿Qué es la Sincronización entre Procesos?
+La sincronización entre procesos es una técnica utilizada para coordinar la ejecución de múltiples procesos (programas independientes) que se ejecutan simultáneamente, garantizando que compartan recursos de manera ordenada y no se interfieran entre sí. La sincronización asegura que los procesos intercambien información de manera correcta y que se eviten problemas como condiciones de carrera, inconsistencias de datos o bloqueos (deadlocks).
+
+En la sincronización entre procesos, se controla la forma en que estos acceden a recursos compartidos, como archivos, memoria, dispositivos de E/S, o bases de datos. Se busca asegurar que las operaciones críticas se realicen de forma atómica y en el orden adecuado.
+
+Usos de la Sincronización entre Procesos
+Coordinación de Tareas: En escenarios donde múltiples procesos deben realizar tareas secuenciales, como en una cadena de producción de software o en la ejecución de scripts en serie, la sincronización asegura que cada proceso comience cuando el anterior ha terminado.
+
+Intercambio de Datos: Permite a los procesos compartir información. Por ejemplo, un proceso puede escribir datos en un archivo compartido, y otro proceso los leerá cuando estén disponibles.
+
+Acceso Controlado a Recursos Compartidos: Cuando varios procesos acceden a un recurso compartido (por ejemplo, un archivo de configuración o una base de datos), la sincronización evita que ocurran conflictos o corrupción de datos.
+
+Ejecución Coordinada en Sistemas Distribuidos: En entornos donde los procesos se ejecutan en diferentes máquinas o nodos, la sincronización asegura que las tareas se realicen de manera ordenada y eficiente.
+
+Gestión de Memoria Compartida: Algunos procesos necesitan compartir datos a través de memoria compartida en lugar de usar archivos o bases de datos. La sincronización permite gestionar el acceso a esta memoria sin crear inconsistencias.
+
+Ejemplos Prácticos de Sincronización entre Procesos
+Aplicaciones Bancarias: Al procesar múltiples transacciones concurrentes, se debe asegurar que no haya inconsistencias al leer o escribir el balance de una cuenta.
+
+Sistemas de Producción y Manufactura: En un entorno de producción, un proceso puede ensamblar una pieza y otro proceso puede añadir un componente adicional. La sincronización garantiza que la pieza esté completa antes de que el segundo proceso continúe.
+
+Sistemas Operativos: La sincronización es fundamental en los sistemas operativos para manejar el acceso concurrente a los recursos del sistema (CPU, memoria, archivos) por parte de diferentes procesos.
+
+Técnicas de Sincronización
+Existen diferentes técnicas para lograr la sincronización entre procesos:
+
+Archivos de Bloqueo (Lock Files): Indican a los procesos que un recurso está siendo utilizado.
+Memoria Compartida (MappedByteBuffer): Comparte datos entre procesos mapeando un archivo en memoria.
+Semáforos y Mutexes: Permiten bloquear y desbloquear recursos de manera controlada.
+Colas de Mensajes: Sistemas como RabbitMQ permiten a los procesos intercambiar mensajes para sincronizarse.
+Bases de Datos: Los procesos pueden usar una base de datos para guardar y consultar el estado de sus operaciones.
+La sincronización entre procesos es esencial en sistemas que requieren alta concurrencia y consistencia de datos, ayudando a evitar errores y a mejorar la eficiencia de la ejecución de múltiples procesos.

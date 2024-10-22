@@ -1,0 +1,162 @@
+Ejercicios Resueltos con Enunciado - Runtime y ProcessBuilder en Java
+Ejercicio 1: Ejecutar un comando básico
+Crea un programa que utilice Runtime para ejecutar un comando de sistema que liste los archivos en un directorio (ls en Unix/Linux o dir en Windows).
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ListDirectory {
+    public static void main(String[] args) {
+        try {
+            String command = System.getProperty("os.name").toLowerCase().contains("win") ? "cmd /c dir" : "ls";
+            Process process = Runtime.getRuntime().exec(command);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al ejecutar el comando.");
+            e.printStackTrace();
+        }
+    }
+}
+Ejercicio 2: Ejecutar múltiples comandos
+Crea un programa que ejecute dos comandos en secuencia utilizando ProcessBuilder. Primero debe crear un directorio y luego listar los archivos dentro de ese directorio.
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class CreateAndListDirectory {
+    public static void main(String[] args) {
+        try {
+            ProcessBuilder createDir = new ProcessBuilder("mkdir", "testDir");
+            createDir.start().waitFor();
+
+            ProcessBuilder listFiles = new ProcessBuilder("ls", "-la", "testDir");
+            Process process = listFiles.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Ocurrió un error durante la ejecución.");
+            e.printStackTrace();
+        }
+    }
+}
+Ejercicio 3: Ejecutar y detener procesos
+Crea un programa que ejecute un comando que permanezca en ejecución (por ejemplo, un ping continuo) y que se detenga después de 5 segundos.
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class PingProcess {
+    public static void main(String[] args) {
+        try {
+            ProcessBuilder builder = new ProcessBuilder("ping", "-t", "google.com");
+            Process process = builder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            long startTime = System.currentTimeMillis();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+
+                if (System.currentTimeMillis() - startTime > 5000) {
+                    process.destroy();
+                    System.out.println("Proceso terminado después de 5 segundos.");
+                    break;
+                }
+            }
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error durante la ejecución del ping.");
+            e.printStackTrace();
+        }
+    }
+}
+Ejercicio 4: Ejecutar un script externo
+Crea un programa que ejecute un script externo (por ejemplo, un archivo .sh en Linux o .bat en Windows) y capture la salida del script.
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ExecuteScript {
+    public static void main(String[] args) {
+        try {
+            String script = System.getProperty("os.name").toLowerCase().contains("win") ? "script.bat" : "./script.sh";
+            ProcessBuilder processBuilder = new ProcessBuilder(script);
+            Process process = processBuilder.start();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error durante la ejecución del script.");
+            e.printStackTrace();
+        }
+    }
+}
+Ejercicio 5: Comunicación entre procesos
+Crea un programa que ejecute dos procesos diferentes y permita la comunicación entre ellos. Por ejemplo, crear un programa que ejecute un proceso productor y otro consumidor, donde el productor genere datos y el consumidor los lea.
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+
+public class ProcessCommunication {
+    public static void main(String[] args) {
+        try {
+            ProcessBuilder producer = new ProcessBuilder("java", "ProducerProgram");
+            Process producerProcess = producer.start();
+
+            ProcessBuilder consumer = new ProcessBuilder("java", "ConsumerProgram");
+            Process consumerProcess = consumer.start();
+
+            BufferedReader producerOutput = new BufferedReader(new InputStreamReader(producerProcess.getInputStream()));
+            OutputStream consumerInput = consumerProcess.getOutputStream();
+
+            String line;
+            while ((line = producerOutput.readLine()) != null) {
+                consumerInput.write((line + "\n").getBytes());
+                consumerInput.flush();
+            }
+
+            producerOutput.close();
+            consumerInput.close();
+
+            BufferedReader consumerOutput = new BufferedReader(new InputStreamReader(consumerProcess.getInputStream()));
+            while ((line = consumerOutput.readLine()) != null) {
+                System.out.println("Consumidor: " + line);
+            }
+            consumerOutput.close();
+
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error durante la comunicación entre procesos.");
+            e.printStackTrace();
+        }
+    }
+}
+ 
