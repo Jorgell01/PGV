@@ -1,0 +1,13 @@
+
+Situación											Tipo de pool de hilos	 
+1. Un servidor de aplicaciones necesita procesar un número fijo de tareas concurrentes.	 	1 FixedThreadPool
+2. Se necesita ejecutar una tarea periódica, como limpiar registros obsoletos cada hora.	2 ScheduledThreadPoolExecutor 	 
+3. Una aplicación con alta concurrencia donde la cantidad de tareas varía mucho.	 	3 CachedThreadPool 
+4. Procesar una larga lista de tareas secuencialmente pero en un entorno multihilo.	 	4 SingleThreadExecutor
+5. Ejecutar tareas con retrasos específicos o intervalos de tiempo fijos.	 	 	5 ScheduledThreadPool
+6. La aplicación requiere un número limitado de hilos para no saturar los recursos.	 	6 FixedThreadPool 
+7. Crear un servidor que maneja solicitudes que pueden llegar en cualquier momento.	 	7 CachedThreadPool
+8. Realizar tareas en segundo plano una tras otra, sin paralelismo.	 	 		8 SingleThreadExecutor	
+9. Enviar notificaciones periódicas a un conjunto de usuarios cada cierto tiempo.	 	9 ScheduledThreadPoolExecutor
+10. Ejecutar un conjunto de tareas concurrentemente, pero solo hasta un máximo de 5.	 	10 FixedThreadPool 
+ 
