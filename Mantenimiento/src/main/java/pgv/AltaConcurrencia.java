@@ -17,11 +17,11 @@ public class AltaConcurrencia {
         executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
     }
 
-    public void submitTask(Runnable task) {
+    public void enviarTarea(Runnable task) {
         executor.submit(task);
     }
 
-    public void shutdown() {
+    public void apagar() {
         executor.shutdown();
         try {
             if (!executor.awaitTermination(60, TimeUnit.SECONDS)) {
@@ -37,7 +37,7 @@ public class AltaConcurrencia {
 
         // Simulación de envío de tareas
         for (int i = 0; i < 50; i++) {
-            altaConcurrencia.submitTask(() -> {
+            altaConcurrencia.enviarTarea(() -> {
                 System.out.println("Ejecutando tarea: " + Thread.currentThread().getName());
                 try {
                     Thread.sleep(1000); // Simulación de trabajo
@@ -47,6 +47,6 @@ public class AltaConcurrencia {
             });
         }
 
-        altaConcurrencia.shutdown();
+        altaConcurrencia.apagar();
     }
 }
