@@ -1,0 +1,64 @@
+
+Nombre de host:                            LAPTOP-89SMRMGC
+Nombre del sistema operativo:              Microsoft Windows 11 Pro
+Versi�n del sistema operativo:             10.0.22631 N/D Compilaci�n 22631
+Fabricante del sistema operativo:          Microsoft Corporation
+Configuraci�n del sistema operativo:       Estaci�n de trabajo independiente
+Tipo de compilaci�n del sistema operativo: Multiprocessor Free
+Propiedad de:                              Mondongo
+Organizaci�n registrada:                   HP
+Id. del producto:                          00355-60676-96541-AAOEM
+Fecha de instalaci�n original:             15/05/2024, 12:59:54
+Tiempo de arranque del sistema:            15/10/2024, 10:41:31
+Fabricante del sistema:                    HP
+Modelo el sistema:                         HP 255 G8 Notebook PC
+Tipo de sistema:                           x64-based PC
+Procesador(es):                            1 Procesadores instalados.
+                                           [01]: AMD64 Family 23 Model 104 Stepping 1 AuthenticAMD ~2100 Mhz
+Versi�n del BIOS:                          Insyde F.31, 16/06/2022
+Directorio de Windows:                     C:\WINDOWS
+Directorio de sistema:                     C:\WINDOWS\system32
+Dispositivo de arranque:                   \Device\HarddiskVolume1
+Configuraci�n regional del sistema:        es;Espa�ol (internacional)
+Idioma de entrada:                         es;Espa�ol (tradicional)
+Zona horaria:                              (UTC+00:00) Dubl�n, Edimburgo, Lisboa, Londres
+Cantidad total de memoria f�sica:          15.680 MB
+Memoria f�sica disponible:                 8.945 MB
+Memoria virtual: tama�o m�ximo:            16.704 MB
+Memoria virtual: disponible:               7.894 MB
+Memoria virtual: en uso:                   8.810 MB
+Ubicaci�n(es) de archivo de paginaci�n:    C:\pagefile.sys
+Dominio:                                   WORKGROUP
+Servidor de inicio de sesi�n:              \\LAPTOP-89SMRMGC
+Revisi�n(es):                              4 revisi�n(es) instaladas.
+                                           [01]: KB5044033
+                                           [02]: KB5027397
+                                           [03]: KB5044285
+                                           [04]: KB5046247
+Tarjeta(s) de red:                         6 Tarjetas de interfaz de red instaladas.
+                                           [01]: Realtek PCIe GbE Family Controller
+                                                 Nombre de conexi�n: Ethernet
+                                                 Estado:             Medios desconectados
+                                           [02]: ExpressVPN TAP Adapter
+                                                 Nombre de conexi�n: Ethernet 2
+                                                 Estado:             Medios desconectados
+                                           [03]: ExpressVPN Wintun Driver
+                                                 Nombre de conexi�n: Conexi�n de �rea local
+                                                 Estado:             Medios desconectados
+                                           [04]: Realtek RTL8852AE WiFi 6 802.11ax PCIe Adapter
+                                                 Nombre de conexi�n: Wi-Fi
+                                                 DHCP habilitado:    S�
+                                                 Servidor DHCP:      192.168.88.1
+                                                 Direcciones IP
+                                                 [01]: 192.168.88.232
+                                                 [02]: fe80::3843:da3e:9040:c9b6
+                                           [05]: Bluetooth Device (Personal Area Network)
+                                                 Nombre de conexi�n: Conexi�n de red Bluetooth
+                                                 Estado:             Medios desconectados
+                                           [06]: VirtualBox Host-Only Ethernet Adapter
+                                                 Nombre de conexi�n: Ethernet 3
+                                                 DHCP habilitado:    No
+                                                 Direcciones IP
+                                                 [01]: 192.168.56.1
+                                                 [02]: fe80::93ce:963e:4dac:7cce
+Requisitos Hyper-V:                        Se detect� un hipervisor. No se mostrar�n las caracter�sticas necesarias para Hyper-V.
